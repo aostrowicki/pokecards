@@ -13,7 +13,7 @@ const getDetails = (data) => {
                 .then(response => response.json())
                 .then(data => data);
             return data;
-        })).then(dispatch(setData(data)));
+        })).then(data => dispatch(setData(data)));
     }
 }
 

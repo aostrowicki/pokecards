@@ -6,42 +6,21 @@ import Card from './Card'
 export default function Cardlist({ limit = 5, search = '', sort, type }) {
 
     const pokemons = useSelector(state => state.pokemons);
-    const [pokemonsExpanded, setPokemonsExpanded] = useState();
     const [pokemonsFiltered, setPokemonsFiltered] = useState();
-    const [dataFetched, setDataFetched] = useState(false);
-
-    const fetchData = async () => {
-        const results = await Promise.all(pokemons.map(async (pokemon) => {
-            const data = await fetch(`${pokemon.url}`)
-                .then(response => response.json())
-                .then(data => data);
-            return data;
-        }));
-        return results;
-    }
 
     useEffect(() => {
-        // pokemons.length && setPokemonsExpanded(pokemons);
-    }, [pokemons])
-
-    useEffect(() => {
-        if (pokemonsExpanded) {
-            setPokemonsFiltered(pokemonsExpanded.filter(pokemon => !type || pokemon.types.some(item => item.type.name === type.toLowerCase()))
+        if (pokemons.length) {
+            setPokemonsFiltered(pokemons.filter(pokemon => !type || pokemon.types.some(item => item.type.name === type.toLowerCase()))
                 .filter(pokemon => pokemon.name.includes(search))
                 .slice(0, limit));
         }
-    }, [pokemonsExpanded, search, type, limit])
+    }, [pokemons, search, type, limit])
 
 
     const cardsLoading = [];
     for (let i = 0; i < limit; i++) {
         cardsLoading.push(<Card key={i} loading />)
     }
-
-    if (dataFetched && !pokemonsFiltered.length)
-        return (
-            <div>noresult</div>
-        )
 
     if (!pokemonsFiltered || !pokemonsFiltered.length)
         return (
