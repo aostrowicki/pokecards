@@ -26,7 +26,7 @@ const Header = styled.header`
         width:85%;
     }
 
-    button{
+    a{
         margin-right:25px;
     }
 `

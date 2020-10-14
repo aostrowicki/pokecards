@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ReactComponent as Logo } from '../pokecard.svg'
 import { colors } from './styled/colors'
+import Cart from './Cart'
 
 const Nav = styled.nav`
     height:60px;
@@ -41,6 +42,29 @@ const Nav = styled.nav`
         flex-position:end;
         display:flex;
         align-items:center;
+        position:relative;
+        cursor:pointer;
+
+        .count{
+            font-family:'Roboto';
+            color:white!important;
+            position:absolute;
+            font-size:9px;
+            font-weight:bold;
+            background:black;
+            border-radius:10px;
+            width:16px;
+            height:16px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            left:104%;
+            top:18px;
+        }
+
+        &:hover{
+            color:#afafaf;
+        }
     }
     
     a{
@@ -91,23 +115,31 @@ const Dropdown = styled.div`
 export default function Navbar() {
     const [dropdown, setDropdown] = useState(false);
     const types = useSelector(props => props.types);
+    const cartItems = useSelector(props => props.cart.length)
+    const [showCart, setShowCart] = useState(false);
 
     return (
-        <Nav>
-            <ul className="menu">
-                <li><Link className='link' to={`/`}><Logo /></Link></li>
-                <li><Link className='link' to={`/`}>Home</Link></li>
-                <span onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>Types
+        <>
+            <Nav>
+                <ul className="menu">
+                    <li><Link className='link' to={`/`}><Logo /></Link></li>
+                    <li><Link className='link' to={`/`}>Home</Link></li>
+                    <span onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>Types
                 {dropdown && <Dropdown>
-                        {types.map(type => <li key={type.name}><Link onClick={() => setDropdown(false)} className='link' to={`/type/${type.name}`}>{type.name}</Link></li>)}
-                    </Dropdown>}
-                </span>
-                <li><Link className='link' to={`/pokemon`}>All cards</Link></li>
-            </ul>
+                            {types.map(type => <li key={type.name}><Link onClick={() => setDropdown(false)} className='link' to={`/type/${type.name}`}>{type.name}</Link></li>)}
+                        </Dropdown>}
+                    </span>
+                    <li><Link className='link' to={`/pokemon`}>All cards</Link></li>
+                </ul>
 
-            <div className="cart">
-                View Cart
-            </div>
-        </Nav >
+                <div className="cart" onClick={() => setShowCart(!showCart)}>
+                    View Cart
+                <div className="count">
+                        {cartItems}
+                    </div>
+                </div>
+            </Nav >
+            {showCart && <Cart setShowCart={() => setShowCart(false)} />}
+        </>
     )
 }

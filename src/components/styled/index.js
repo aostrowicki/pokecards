@@ -4,12 +4,17 @@ import { colors } from './colors'
 export const SpaceBetween = styled.div`
     display:flex;
     justify-content:space-between;
-    align-items:flex-end;
+    align-items:flex-start;
 `
 
 export const Center = styled.div`
     display:flex;
     justify-content:center;
+`
+
+export const Divider = styled.div`
+    height:1px;
+    background:${props => !props.dark ? colors.border : '#303030'};
 `
 
 export const Column = styled.div`
@@ -25,7 +30,7 @@ export const Container = styled.div`
 export const Grid = styled.div`
     display:grid;
     grid-gap:40px;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(250px,256px));
 `
 
 export const H1 = styled.h1`

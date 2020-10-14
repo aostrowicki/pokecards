@@ -1,4 +1,4 @@
-const dataReducer = (state = [], action) => {
+const dataReducer = (state = null, action) => {
 
     switch (action.type) {
         case 'FETCH_DATA':

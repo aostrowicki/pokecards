@@ -18,7 +18,7 @@ export default function Index() {
         return <div></div>
 
     return (
-        <Container small>
+        <Container small style={{ padding: '80px 0 140px' }}>
             <SpaceBetween>
                 <Column>
                     <Card pokemon={pokemon} />

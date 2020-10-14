@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from './styled/colors'
 import Type from './Type'
-import { Center } from './styled'
+import { Center, Button, Divider } from './styled'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../actions/cartActions'
 
 
 const Pokecard = styled.article`
@@ -48,7 +50,36 @@ const Pokecard = styled.article`
         z-index:5;
         justify-self:flex-end;
     }
-    
+
+    button{
+        position:absolute;
+        top:0;
+        left:50%;
+        transform:translate(-50%,-50%);
+        padding-light: 40px;
+        font-family: Roboto Mono;
+        font-size: 16px;
+        color:#11C901;
+        border-color:#11C901;
+        z-index:5;
+
+        &:hover{
+
+            &::before{
+                content:'Add To Cart';
+                width:100%;
+                height:90%;
+                position:absolute;
+                display:flex;
+                top:0;
+                left:0;
+                font-size: 12px;
+                background:${colors.light2};
+                border-radius:20px;
+                line-height:14px;
+            }
+        }
+    }
 `
 
 const Stats = styled.div`
@@ -80,13 +111,11 @@ const Stats = styled.div`
     }
 `
 
-const Divider = styled.div`
-    height:1px;
-    background:${colors.border};
-`
 
+export default function Card({ pokemon, loading, cart }) {
 
-export default function Card({ pokemon, loading }) {
+    const dispatch = useDispatch();
+
 
     if (loading) return (
         <Pokecard>
@@ -96,6 +125,7 @@ export default function Card({ pokemon, loading }) {
 
     return (
         <Pokecard>
+            {cart && <Button onClick={() => dispatch(addToCart(pokemon))}>${pokemon.price}</Button>}
             <Link className='link' to={`/pokemon/${pokemon.name}`}></Link>
             <Stats>
                 <span>{pokemon.stats[0].base_stat}</span>

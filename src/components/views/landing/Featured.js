@@ -14,7 +14,7 @@ export default function Featured() {
             <SpaceBetween style={{ paddingBottom: '45px' }}>
                 <H2>Quick search</H2>
                 <SpaceBetween>
-                    <Link to='/pokemon'><Button style={{ marginRight: '15px' }}>All Cards</Button></Link>
+                    <Link to='/pokemon' style={{ marginRight: '15px' }}><Button>All Cards</Button></Link>
                     <Search><input placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} /></Search>
                 </SpaceBetween>
             </SpaceBetween>

@@ -12,7 +12,7 @@ const StyledLink = styled(Link)`
     font-size: 11px;
     padding:2px 8px 2px 9px;
     border-radius:50px;
-    margin-right:5px;
+    margin-right:5px!important;
     background-color: ${props =>
         typesColors.find(type => type.type === props.type).color
     }
