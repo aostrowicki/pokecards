@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Card from '../../Card'
 import { H1, SH, Button } from '../../styled'
 import { Link } from 'react-router-dom'
+import bg from '../../../bg.png'
 
 
 const Header = styled.header`
@@ -10,9 +11,28 @@ const Header = styled.header`
     padding:70px 0 90px;
     display:flex;
     justify-content:center;
+    position:relative;
+
+    &::before,&::after{
+        opacity:0.5;
+        content:'';
+        position:absolute;
+        top:0;
+        height:100%;
+        width:100%;
+        background-image: url(${bg});
+        background-repeat: repeat-y;
+        background-position:right top;
+    }
+
+    &::after{
+        transform:scaleX(-1);
+        
+    }
 
     .container{
-        max-width:750px;
+        z-index:1;
+        max-width:750px;    
         display:flex;
         align-items:center;
     }
@@ -38,10 +58,10 @@ export default function Hero() {
         fetch(url).then(response => response.json()).then(data => data && setPokemon(data));
 
 
-        // setInterval(function () {
-        //     url = `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 890) + 1}/`
-        //     fetch(url).then(response => response.json()).then(data => setPokemon(data));
-        // }, 4000)
+        setInterval(function () {
+            url = `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 890) + 1}/`
+            fetch(url).then(response => response.json()).then(data => setPokemon(data));
+        }, 5000)
     }, [])
 
     const [pokemon, setPokemon] = useState();
@@ -51,7 +71,7 @@ export default function Hero() {
             <div className="container">
                 <div>
                     <H1>Pokecards</H1>
-                    <SH>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus, nisl porttitor vitae.</SH>
+                    <SH>Collect your favourite Pokemons! There's more than 900 Pokecards available. </SH>
                     <Link to='/pokemon'><Button big>See All Cards</Button></Link>
                     <Link to={`/pokemon/${Math.floor(Math.random() * 890) + 1}`}><Button big primary>Random Card</Button></Link>
                 </div>
