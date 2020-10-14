@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Divider, SpaceBetween } from './styled'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { removeFromCart } from '../actions/cartActions'
+import { saveCart } from '../reducers'
 
 const CartDropdown = styled.div`
     background-color: #1F1F1F;
@@ -21,6 +22,7 @@ const CartDropdown = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+    display:${props => !props.showCart ? 'none' : 'block'};
 
     a{
         padding:8px 20px;
@@ -113,31 +115,37 @@ function CartItem({ item }) {
             </div>
             <div className="quantity">
                 <div>{item.quantity}</div>
-                <div className="delete" onClick={() => { dispatch(removeFromCart(item)) }}>x</div>
+                <div className="delete" onClick={() => dispatch(removeFromCart(item))}>x</div>
             </div>
         </StyledItem>
     )
 }
 
-export default function Cart({ setShowCart }) {
+export default function Cart({ setShowCart, showCart }) {
     const cartItems = useSelector(props => props.cart)
+
+    useEffect(() => {
+        saveCart(cartItems);
+    }, [cartItems])
 
 
     if (!cartItems || !cartItems.length)
-        return <CartDropdown>
-            <SpaceBetween>
-                <div className="cart">Cart</div>
-                <div style={{ cursor: 'pointer' }} onClick={setShowCart}>
-                    <svg height="20px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="20px" fill="#fff"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" /></svg>
-                </div>
-            </SpaceBetween>
+        return (
+            <CartDropdown showCart={showCart}>
+                <SpaceBetween>
+                    <div className="cart">Cart</div>
+                    <div style={{ cursor: 'pointer' }} onClick={setShowCart}>
+                        <svg height="20px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="20px" fill="#fff"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" /></svg>
+                    </div>
+                </SpaceBetween>
 
-    Your cart is empty.
-        </CartDropdown >
+                Your cart is empty.
+            </CartDropdown >
+        )
 
 
     return (
-        <CartDropdown>
+        <CartDropdown showCart={showCart}>
             <SpaceBetween>
                 <div className="cart">Cart</div>
                 <div style={{ cursor: 'pointer' }} onClick={setShowCart}>

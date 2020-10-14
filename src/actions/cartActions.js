@@ -31,7 +31,7 @@ export const addToCart = (pokemon) => (dispatch, getState) => {
 }
 
 export const removeFromCart = (pokemon) => (dispatch, getState) => {
-    const cart = getState().cart;
+    const cart = [...getState().cart];
     const index = cart.findIndex(item => item.name === pokemon.name);
     cart.splice(index, 1);
     dispatch(removeItem(cart));

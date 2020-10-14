@@ -139,7 +139,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </Nav >
-            {showCart && <Cart setShowCart={() => setShowCart(false)} />}
+            <Cart setShowCart={() => setShowCart(false)} showCart={showCart} />
         </>
     )
 }

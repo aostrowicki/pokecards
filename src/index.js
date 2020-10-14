@@ -7,9 +7,11 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import combinedReducers from './reducers'
+import combinedReducers, { loadCart } from './reducers'
 
-const store = createStore(combinedReducers, applyMiddleware(thunk));
+
+const cartStorage = loadCart();
+const store = createStore(combinedReducers, { cart: cartStorage }, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
