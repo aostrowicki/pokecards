@@ -7,7 +7,11 @@ import { colors } from './styled/colors'
 import Cart from './Cart'
 
 const Nav = styled.nav`
+    position:fixed;
+    top:0;
+    width:100%;
     height:60px;
+    z-index:100;
     background-color: #1A1A1A;
     font-family: 'Roboto Mono',sans-serif;
     font-weight: bold;
@@ -17,7 +21,6 @@ const Nav = styled.nav`
     display:flex;
     justify-content:space-between;
     padding: 0 60px;
-    position:relative;
     
     .menu{
         display:flex;
@@ -49,12 +52,13 @@ const Nav = styled.nav`
             font-family:'Roboto';
             color:white!important;
             position:absolute;
-            font-size:9px;
+            font-size:11px;
+            line-height:11px;
             font-weight:bold;
             background:black;
             border-radius:10px;
-            width:16px;
-            height:16px;
+            width:18px;
+            height:18px;
             display:flex;
             justify-content:center;
             align-items:center;

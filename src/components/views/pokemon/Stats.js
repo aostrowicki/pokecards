@@ -12,10 +12,22 @@ const Bar = styled.div`
 `
 
 const Progress = styled.div`
-    width:${props => props.width/1.3}%;
+    width:${props => props.width > 100 ? '100' : props.width}%;
     height: 23px;
     border-radius:6px;
-    background:#1ECC4F;
+    background:${props => {
+        switch (true) {
+            case props.width >= 200:
+                return '#101010';
+            case props.width >= 150:
+                return '#7337ea ';
+            case props.width >= 100:
+                return '#FF3838';
+            default:
+                return '#1ECC4F';
+        }
+    }
+    };
     padding: 0 6px;
     display:flex;
     justify-content:flex-end;

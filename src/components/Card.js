@@ -62,14 +62,14 @@ const Pokecard = styled.article`
         font-family: Roboto Mono;
         font-size: 16px;
         color:#11C901;
-        border-color:#11C901;
+        border-color:${colors.border};
         z-index:5;
 
         &::before{
             transition: opacity 0.1s ease-in-out;
             opacity:0;
             content:'';
-            background-color:${colors.light2};
+            background-color:${colors.light};
             background-image:url(${cartImage});
             background-repeat: no-repeat;
             background-position:center center;
@@ -77,12 +77,13 @@ const Pokecard = styled.article`
             height:100%;
             position:absolute;
             display:flex;
-            top:0;
-            left:0;
+            top:-1px;
+            left:-1px;
             font-size: 12px;
             color:white;
             border-radius:6px;
             line-height:14px;
+            border: 1px solid #11C901;
         }
 
         &:hover{
