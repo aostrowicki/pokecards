@@ -12,7 +12,7 @@ const Bar = styled.div`
 `
 
 const Progress = styled.div`
-    width:${props => props.width}%;
+    width:${props => props.width/1.3}%;
     height: 23px;
     border-radius:6px;
     background:#1ECC4F;

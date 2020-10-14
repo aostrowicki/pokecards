@@ -6,6 +6,7 @@ import { Center, Button, Divider } from './styled'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../actions/cartActions'
+import cartImage from '../cart.svg'
 
 
 const Pokecard = styled.article`
@@ -24,7 +25,8 @@ const Pokecard = styled.article`
         text-align:center;
 
         img{
-            max-width:100px;
+            min-height:96px;
+            max-height:100px;
         }
 
         h1{
@@ -63,20 +65,30 @@ const Pokecard = styled.article`
         border-color:#11C901;
         z-index:5;
 
+        &::before{
+            transition: opacity 0.1s ease-in-out;
+            opacity:0;
+            content:'';
+            background-color:${colors.light2};
+            background-image:url(${cartImage});
+            background-repeat: no-repeat;
+            background-position:center center;
+            width:100%;
+            height:100%;
+            position:absolute;
+            display:flex;
+            top:0;
+            left:0;
+            font-size: 12px;
+            color:white;
+            border-radius:6px;
+            line-height:14px;
+        }
+
         &:hover{
 
             &::before{
-                content:'Add To Cart';
-                width:100%;
-                height:90%;
-                position:absolute;
-                display:flex;
-                top:0;
-                left:0;
-                font-size: 12px;
-                background:${colors.light2};
-                border-radius:20px;
-                line-height:14px;
+                opacity:1;
             }
         }
     }
@@ -111,6 +123,24 @@ const Stats = styled.div`
     }
 `
 
+const Abilities = styled.div`
+    font-family:'Roboto Mono';
+    font-size:14px;
+
+    div{
+        margin: 10px 0;
+    }
+
+    span{
+        margin:6px 0;
+        text-align:center;
+        display:block;
+        text-transform:capitalize;
+        opacity:0.8;
+        pointer-events:none;
+    }
+`
+
 
 export default function Card({ pokemon, loading, cart }) {
 
@@ -138,11 +168,10 @@ export default function Card({ pokemon, loading, cart }) {
                 <h1>{pokemon.name}</h1>
             </div>
 
-            <div className="abilities">
-                <span>xxx</span>
+            <Abilities>
                 <Divider />
-                <span>xxx</span>
-            </div>
+                {pokemon.abilities.map(ability => <span key={ability.slot}>{ability.ability.name}</span>)}
+            </Abilities>
 
 
             <Center style={{ marginTop: 'auto' }}>
@@ -150,6 +179,6 @@ export default function Card({ pokemon, loading, cart }) {
                     <Type key={type.type.name} name={type.type.name} />
                 )}
             </Center>
-        </Pokecard>
+        </Pokecard >
     )
 }
