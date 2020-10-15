@@ -11,7 +11,9 @@ export default function Index() {
     const [pokemon, setPokemon] = useState();
 
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemon}`).then(results => results.json()).then(data => setPokemon(data));
+        fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemon}`)
+            .then(results => results.json())
+            .then(data => setPokemon({ ...data, price: Math.floor(data.stats.reduce((acc, item) => acc + item.base_stat ** 2, 0) / 1000) }));
     }, [])
 
     if (!pokemon)

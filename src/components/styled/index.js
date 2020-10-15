@@ -12,9 +12,15 @@ export const Center = styled.div`
     justify-content:center;
 `
 
+export const CenterAlign = styled.div`
+    display:flex;
+    align-items:center;
+`
+
 export const Divider = styled.div`
     height:1px;
     background:${props => !props.dark ? colors.border : '#303030'};
+    margin-bottom:${props => props.bottom ? `${props.bottom}px` : 0};
 `
 
 export const Column = styled.div`
@@ -50,12 +56,39 @@ export const H2 = styled.h1`
     vertical-align:middle;
 `
 
+export const H4 = styled.h1`
+    margin:0;
+    font-family: Roboto Mono;
+    font-weight: bold;
+    font-size: 28px;
+    color:${colors.text};
+    vertical-align:middle;
+    text-transform:capitalize;
+`
+
+export const Price = styled.p`
+    margin:0;
+    font-family: 'Roboto Mono';
+    font-size: 16px;
+    color:${colors.text};
+    font-weight:bold;
+    margin-right:20px;
+`
+
 export const SH = styled.p`
     margin:0;
     font-family: Roboto;
     font-size: 16px;
     color:white;
     font-weight:400;
+`
+
+export const Par = styled.span`
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    list-style:none;
+    margin: 8px 0;
 `
 
 export const Button = styled.button`

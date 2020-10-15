@@ -6,7 +6,7 @@ import { Center, Button, Divider } from './styled'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../actions/cartActions'
-import cartImage from '../cart.svg'
+import cartImage from '../assets/cart.svg'
 
 
 const Pokecard = styled.article`
@@ -20,6 +20,7 @@ const Pokecard = styled.article`
     position:relative;
     display:flex;
     flex-direction:column;
+    font-family:'Roboto Mono';
 
     .info{
         text-align:center;

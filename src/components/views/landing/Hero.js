@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Card from '../../Card'
 import { H1, SH, Button } from '../../styled'
 import { Link } from 'react-router-dom'
-import bg from '../../../bg.png'
+import bg from '../../../assets/bg.png'
 
 
 const Header = styled.header`

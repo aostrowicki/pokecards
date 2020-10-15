@@ -8,12 +8,12 @@ import { useParams } from 'react-router-dom'
 
 export default function Index() {
     const sortList = [
-        { name: 'Price highest' },
-        { name: 'Price lowest' },
-        { name: 'ATK highest' },
-        { name: 'ATK lowest' },
-        { name: 'HP highest' },
-        { name: 'HP lowest' },
+        { name: 'Lowest Price' },
+        { name: 'Highest Price' },
+        { name: 'HP' },
+        { name: 'ATK' },
+        { name: 'DEF' },
+        { name: 'SPD' },
     ]
 
     const cardsPerPage = 15;

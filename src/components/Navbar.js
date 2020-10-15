@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -42,6 +42,7 @@ const Nav = styled.nav`
     
     
     .cart{
+        transform:translateX(-18px);
         flex-position:end;
         display:flex;
         align-items:center;
@@ -121,6 +122,11 @@ export default function Navbar() {
     const types = useSelector(props => props.types);
     const cartItems = useSelector(props => props.cart.length)
     const [showCart, setShowCart] = useState(false);
+
+    useEffect(() => {
+        if (cartItems)
+            setShowCart(true);
+    }, [cartItems])
 
     return (
         <>

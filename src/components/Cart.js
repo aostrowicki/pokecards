@@ -91,7 +91,6 @@ const Total = styled.div`
     font-size:26px;
     font-weight:bold;
     margin-left:12px;
-    margin-top:20px;
 
     &::before{
         content:'$';
@@ -111,11 +110,13 @@ function CartItem({ item }) {
         <StyledItem>
             <div className="info">
                 <div className="name">{item.name}</div>
-                <div className="price">${item.price}</div>
+                <div className="price">${item.price}.00</div>
             </div>
             <div className="quantity">
                 <div>{item.quantity}</div>
-                <div className="delete" onClick={() => dispatch(removeFromCart(item))}>x</div>
+                <div className="delete" onClick={() => dispatch(removeFromCart(item))}>
+                    <svg height="8px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="8px" fill="#fff"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" /></svg>
+                </div>
             </div>
         </StyledItem>
     )
@@ -157,8 +158,11 @@ export default function Cart({ setShowCart, showCart }) {
                 {cartItems.map(item => <CartItem key={item.name} item={item} />)}
             </div>
 
-            <Divider dark />
-            <Total>{cartItems.reduce((value, item) => value + item.price * item.quantity, 0)}.00</Total>
+            <Divider dark bottom={20} />
+            Total:
+            <SpaceBetween>
+                <Total>{cartItems.reduce((value, item) => value + item.price * item.quantity, 0)}.00</Total>
+            </SpaceBetween>
         </CartDropdown>
     )
 }
