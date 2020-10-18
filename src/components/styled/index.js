@@ -4,7 +4,15 @@ import { colors } from './colors'
 export const SpaceBetween = styled.div`
     display:flex;
     justify-content:space-between;
-    align-items:flex-start;
+    align-items:center;
+    padding-bottom:${props => props.bottom}px;
+    flex-wrap:${props => props.wrapp ? 'wrap-reverse' : 'nowrap'};
+
+    @media screen and (max-width:650px){
+        
+        & > *{
+            padding-bottom:${props => props.wrapp ? '5px' : 'unset'};
+        }
 `
 
 export const Center = styled.div`
@@ -31,12 +39,25 @@ export const Column = styled.div`
 export const Container = styled.div`
     max-width:${props => props.small ? '950px' : '1440px'};
     margin:auto;
+    padding-top:${props => props.top}px;
+    padding-bottom:${props => props.bottom}px;
+
+    @media screen and (max-width: 1500px){
+        padding-left: 20px;
+        padding-right: 20px;
+        max-width:${props => props.small ? '950px' : '100%'};
+    }
 `
 
 export const Grid = styled.div`
     display:grid;
     grid-gap:40px;
     grid-template-columns: repeat(auto-fit,minmax(250px,256px));
+
+    @media screen and (max-width: 1500px){
+        grid-gap: 40px 20px;
+        justify-content:center;
+    }
 `
 
 export const H1 = styled.h1`
@@ -45,6 +66,11 @@ export const H1 = styled.h1`
     font-weight: bold;
     font-size: 48px;
     color:white;
+
+    
+    @media screen and (max-width: 900px){
+        font-size:40px;
+    }
 `
 
 export const H2 = styled.h1`
@@ -54,6 +80,10 @@ export const H2 = styled.h1`
     font-size: 36px;
     color:${colors.text};
     vertical-align:middle;
+
+    @media screen and (max-width: 900px){
+        font-size:32px;
+    }
 `
 
 export const H4 = styled.h1`

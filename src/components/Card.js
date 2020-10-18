@@ -160,8 +160,8 @@ export default function Card({ pokemon, loading, cart }) {
             {cart && <Button onClick={() => dispatch(addToCart(pokemon))}>${pokemon.price}</Button>}
             <Link className='link' to={`/pokemon/${pokemon.name}`}></Link>
             <Stats>
-                <span>{pokemon.stats[0].base_stat}</span>
-                <span>{pokemon.stats[1].base_stat}</span>
+                <span>{pokemon.stats.length ? pokemon.stats[0].base_stat : '?'}</span>
+                <span>{pokemon.stats.length ? pokemon.stats[1].base_stat : '?'}</span>
             </Stats>
 
             <div className="info">

@@ -43,9 +43,14 @@ const List = styled.ul`
     top:calc(100% + 5px);
     left:0;
     z-index:10;
+    
     ${props => props.grid && css`
         display:grid;
         grid-template-columns: repeat(3,1fr);
+
+        @media screen and (max-width:650px){
+            grid-template-columns: repeat(2,1fr);
+        }
     `}
 
     li{
@@ -64,6 +69,10 @@ const List = styled.ul`
 
         &:hover{
             background-color:${colors.light2};
+        }
+
+        @media screen and (max-width:440px){
+            min-width:160px;
         }
     }
 `

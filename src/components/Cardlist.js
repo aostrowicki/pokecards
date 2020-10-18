@@ -19,7 +19,7 @@ export default function Cardlist({ limit = 5, search = '', sort, type }) {
                     if (sort === 'HP') return b.stats[0].base_stat - a.stats[0].base_stat;
                     if (sort === 'ATK') return b.stats[1].base_stat - a.stats[1].base_stat;
                     if (sort === 'DEF') return b.stats[2].base_stat - a.stats[2].base_stat;
-                    if (sort === 'SPD') return b.stats[3].base_stat - a.stats[3].base_stat;
+                    if (sort === 'SPD') return b.stats[5].base_stat - a.stats[5].base_stat;
                     return 0;
                 })
                 .slice(0, limit));

@@ -30,11 +30,14 @@ const CartDropdown = styled.div`
     }
 
     .cart{
-        padding-bottom:20px;
         font-family:'Roboto Mono';
         font-weight:bold;
         font-size:22px;
         line-height:22px;
+    }
+
+    @media screen and (max-width:440px){
+        width:calc(100% - 50px);
     }
 `
 
@@ -133,7 +136,7 @@ export default function Cart({ setShowCart, showCart }) {
     if (!cartItems || !cartItems.length)
         return (
             <CartDropdown showCart={showCart}>
-                <SpaceBetween>
+                <SpaceBetween bottom={20}>
                     <div className="cart">Cart</div>
                     <div style={{ cursor: 'pointer' }} onClick={setShowCart}>
                         <svg height="20px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="20px" fill="#fff"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" /></svg>
@@ -147,7 +150,7 @@ export default function Cart({ setShowCart, showCart }) {
 
     return (
         <CartDropdown showCart={showCart}>
-            <SpaceBetween>
+            <SpaceBetween bottom={20}>
                 <div className="cart">Cart</div>
                 <div style={{ cursor: 'pointer' }} onClick={setShowCart}>
                     <svg height="20px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="20px" fill="#fff"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" /></svg>

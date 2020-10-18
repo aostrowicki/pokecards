@@ -7,7 +7,15 @@ import { useSelector } from 'react-redux'
 
 const List = styled.div`
     display:grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fit,minmax(290px,1fr));
+    
+    @media screen and (max-width: 900px){
+        grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    }
+
+    @media screen and (max-width: 600px){
+        grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    }
 `
 
 const ListItem = styled.span`
@@ -16,7 +24,6 @@ const ListItem = styled.span`
     font-weight: 400;
     list-style:none;
     margin: 8px 0;
-    width:290px;
     text-transform:capitalize;  
 `
 
@@ -35,7 +42,7 @@ export default function Types() {
     const sortedTypes = types.sort((a, b) => a.name.localeCompare(b.name));
 
     return (
-        <Container style={{ paddingBottom: '120px' }}>
+        <Container bottom={120}>
             <H2 style={{ paddingBottom: '25px' }}>Search by type</H2>
             <List>
                 {sortedTypes.map(type => <ListItem key={type.name}><StyledLink to={`/type/${type.name}`}>{type.name}</StyledLink></ListItem>)}

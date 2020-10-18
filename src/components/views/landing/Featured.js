@@ -10,8 +10,8 @@ export default function Featured() {
     const [limit, setLimit] = useState(cardsPerPage);
 
     return (
-        <Container style={{ padding: '100px 0 100px' }}>
-            <SpaceBetween style={{ paddingBottom: '45px' }}>
+        <Container top={100} bottom={100}>
+            <SpaceBetween bottom={45} wrapp>
                 <H2>Quick search</H2>
                 <SpaceBetween>
                     <Link to='/pokemon' style={{ marginRight: '15px' }}><Button>All Cards</Button></Link>

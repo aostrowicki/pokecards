@@ -9,12 +9,20 @@ import { H4, CenterAlign, Button, Price } from '../../styled'
 const Paper = styled.div`
     background:white;
     height:100%;
-    width:100%;
     align-self:start;
     border-radius:6px;
     border:solid 1px ${colors.border};
-    margin-left: 50px;
     padding: 35px 55px;
+    width:100%;
+    max-width:620px;
+    margin-bottom:30px;
+
+    @media screen and (max-width: 1500px){
+        max-width:580px;
+    }
+    @media screen and (max-width: 650px){
+        padding: 25px 25px;
+    }
 `
 
 export const Description = styled.p`

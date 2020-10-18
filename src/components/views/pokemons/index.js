@@ -30,8 +30,8 @@ export default function Index() {
     }, [params])
 
     return (
-        <Container style={{ padding: '80px 0 140px' }}>
-            <SpaceBetween style={{ paddingBottom: '45px' }}>
+        <Container bottom={140} top={80}>
+            <SpaceBetween bottom={45} wrapp>
                 <SpaceBetween>
                     <Select name="Type" options={sortedTypes} currentState={type} setState={(e) => setType(e.target.innerText)} grid />
                     <div style={{ width: '15px' }} />

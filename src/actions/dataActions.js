@@ -10,8 +10,9 @@ const getDetails = (data) => {
     return dispatch => {
         Promise.all(data.flatMap(async (pokemon) => {
             const fetchedData = await fetch(`${pokemon.url}`)
-                .then(response => response.json())
-                .then(data => data.stats.length ? data : null);
+                .then(response => { if (response.ok) return response.json(); else throw new Error("Pokemon not found - 404"); })
+                .then(data => data.stats.length ? data : null)
+                .catch(error => console.log(error));
             return fetchedData ? { ...fetchedData, price: Math.floor(fetchedData.stats.reduce((acc, item) => acc + item.base_stat ** 2, 0) / 1000) } : [];
         })).then(data => dispatch(setData((data.flat()))));
     }

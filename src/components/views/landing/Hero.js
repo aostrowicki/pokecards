@@ -46,8 +46,27 @@ const Header = styled.header`
         width:85%;
     }
 
-    a{
+    a:not(:last-child){
         margin-right:25px;
+    }
+
+    @media screen and (max-width: 900px){
+
+        .container{
+            flex-direction:column-reverse;
+            text-align:center;
+        }
+
+        p{
+            margin-bottom: 30px;
+            width:100%;
+            padding:10px;
+        }
+
+        h1{
+            margin:60px 0 0;
+        }
+
     }
 `
 
@@ -72,8 +91,10 @@ export default function Hero() {
                 <div>
                     <H1>Pokecards</H1>
                     <SH>Collect your favourite Pokemons! There's more than 900 Pokecards available. </SH>
-                    <Link to='/pokemon'><Button big>See All Cards</Button></Link>
-                    <Link to={`/pokemon/${Math.floor(Math.random() * 890) + 1}`}><Button big primary>Random Card</Button></Link>
+                    <div>
+                        <Link to='/pokemon'><Button big>See All Cards</Button></Link>
+                        <Link to={`/pokemon/${Math.floor(Math.random() * 890) + 1}`}><Button big primary>Random Card</Button></Link>
+                    </div>
                 </div>
 
                 {pokemon ? <Card pokemon={pokemon} /> : <Card loading>loading2</Card>}

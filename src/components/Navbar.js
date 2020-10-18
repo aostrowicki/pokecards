@@ -19,8 +19,11 @@ const Nav = styled.nav`
     line-height: 18px;
     color: #FFFFFF;
     display:flex;
-    justify-content:space-between;
     padding: 0 60px;
+
+    @media screen and (max-width:1500px){
+        padding: 0 20px;
+    }
     
     .menu{
         display:flex;
@@ -28,16 +31,23 @@ const Nav = styled.nav`
         padding:0;
         height:100%;
         align-items:center;
+
+        @media screen and (max-width:600px){
+            display:none;
+        }
+    }
+
+    .logo{
+        display:flex;
+        height:100%;
+        align-items:center;
+        margin-right: 100px;   
     }
     
     li{
         display:flex;
         list-style:none;
         margin-right: 25px;
-        
-        &:first-child{
-            margin-right: 100px;   
-        }
     }
     
     
@@ -48,6 +58,7 @@ const Nav = styled.nav`
         align-items:center;
         position:relative;
         cursor:pointer;
+        margin-left:auto;
 
         .count{
             font-family:'Roboto';
@@ -131,8 +142,8 @@ export default function Navbar() {
     return (
         <>
             <Nav>
+                <div className="logo"><Link className='link' to={`/`}><Logo /></Link></div>
                 <ul className="menu">
-                    <li><Link className='link' to={`/`}><Logo /></Link></li>
                     <li><Link className='link' to={`/`}>Home</Link></li>
                     <span onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>Types
                 {dropdown && <Dropdown>
