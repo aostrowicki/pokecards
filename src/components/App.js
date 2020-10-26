@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { fetchData } from '../actions/dataActions'
 import { fetchTypes } from '../actions/typesActions'
@@ -17,6 +17,12 @@ function App() {
     dispatch(fetchData());
     dispatch(fetchTypes());
   }, [])
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
