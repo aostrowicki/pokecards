@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../actions/cartActions'
 import cartImage from '../assets/cart.svg'
+import Skeleton from './Skeleton'
 
 
 const Pokecard = styled.article`
@@ -26,8 +27,7 @@ const Pokecard = styled.article`
         text-align:center;
 
         img{
-            min-height:96px;
-            max-height:100px;
+            height:96px;
         }
 
         h1{
@@ -148,10 +148,18 @@ export default function Card({ pokemon, loading, cart }) {
 
     const dispatch = useDispatch();
 
-
     if (loading) return (
         <Pokecard>
-
+            <Stats>
+                <Skeleton width={50} height={22} />
+                <Skeleton width={50} height={22} />
+            </Stats>
+            <center>
+                <Skeleton width={86} height={86} round />
+                <Skeleton width={200} height={24} />
+                <Skeleton width={200} height={12} />
+                <Skeleton width={200} height={12} />
+            </center>
         </Pokecard>
     )
 
@@ -165,8 +173,7 @@ export default function Card({ pokemon, loading, cart }) {
             </Stats>
 
             <div className="info">
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} width='96' height='96' />
                 <h1>{pokemon.name}</h1>
             </div>
 
