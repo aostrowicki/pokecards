@@ -4,7 +4,7 @@ Personal project created with public API to improve the skills to work with API'
 
 [Live demo](https://sleepy-pasteur-120358.netlify.app)
 
-### Built with
+## Built with
 - React 
 - Redux
 - Styled Components
