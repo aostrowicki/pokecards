@@ -7,5 +7,6 @@ Personal project created with public API to improve the skills to work with API'
 ## Built with
 - React 
 - Redux
+- Redux Thunk
 - Styled Components
 - PokeAPI
